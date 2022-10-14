@@ -1,12 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+
+import { Link } from "react-router-dom";
+
+import RepoContext from "../context/RepoContext";
+
 // import "../../App.css";
 
 //https://api.github.com/search/repositories?q=html
 function Home() {
+  const { getUrl } = useContext(RepoContext);
   const [inputValue, setInputValue] = useState("");
   const [repos, setRepos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+
   useEffect(() => {
     if (!inputValue) {
       // console.log("no input value, haciendo el return");
@@ -59,7 +66,11 @@ function Home() {
         {repos.map((repo) => {
           return (
             <li key={repo.id}>
-              <a href={repo.html_url}>{repo.name}</a>
+              <Link to={`repo/${repo.name}`} onClick={() => getUrl(repo.url)}>
+                {repo.name}
+                {/* {console.log(repo.url)} */}
+              </Link>
+              {/* <a href={repo.html_url}>{repo.name}</a> */}
               <p>{repo.description}</p>
             </li>
           );

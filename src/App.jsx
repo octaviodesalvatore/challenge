@@ -3,18 +3,23 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Repo from "./pages/Repo";
+
+import RepoProvider from "./context/RepoProvider";
 
 const App = () => {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route exact path="/" component={Home} /> */}
-          {/* <Route exact path="/user/:login" component={User} /> */}
-          {/* <Route component={NotFound} /> */}
-        </Routes>
-      </BrowserRouter>
+      <RepoProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/repo/:user" element={<Repo />} />
+            {/* <Route exact path="/user/:login" component={User} /> */}
+            {/* <Route component={NotFound} /> */}
+          </Routes>
+        </BrowserRouter>
+      </RepoProvider>
     </>
   );
 };
