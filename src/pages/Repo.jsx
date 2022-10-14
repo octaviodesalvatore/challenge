@@ -5,10 +5,19 @@ const Repo = () => {
   const { saveUrl } = useContext(RepoContext);
 
   const [content, setContent] = useState([]);
-  console.log("hola");
+  const [currentUrl, setCurrentUrl] = useState(`${saveUrl}/contents`);
+  const [urlBefore, setUrlBefore] = useState("");
+
+  const updateUrl = (url) => {
+    setCurrentUrl(`${currentUrl}/${url}`);
+  };
+
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   useEffect(() => {
-    fetch(`${saveUrl}/contents`)
+    fetch(currentUrl)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -19,10 +28,11 @@ const Repo = () => {
         // setError(true);
         console.error(err);
       });
-  }, []);
+  }, [currentUrl]);
 
   return (
     <>
+      <button>volver</button>
       <table>
         <tr>
           <th>Nombre</th>
@@ -31,7 +41,19 @@ const Repo = () => {
         </tr>
         {content.map((contenido) => (
           <tr>
-            <td>{contenido.path}</td>
+            <td
+              onClick={() => {
+                if (contenido.type === "dir") {
+                  updateUrl(contenido.path);
+                  console.log("carpeta");
+                } else if (contenido.type === "file") {
+                  openInNewTab(`${contenido.download_url}`);
+                  console.log("archivo");
+                }
+              }}
+            >
+              {contenido.path}
+            </td>
             <br />
             <br />
             <td>{contenido.type}</td>
