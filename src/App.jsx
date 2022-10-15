@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Repo from "./Repo";
+import Repo from "./Components/Repo";
 
 import RepoProvider from "./context/RepoProvider";
 

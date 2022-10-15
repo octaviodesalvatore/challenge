@@ -8,7 +8,7 @@ import RepoContext from "../context/RepoContext";
 
 //https://api.github.com/search/repositories?q=html
 function Home() {
-  const { getUrl } = useContext(RepoContext);
+  const { setUrlFromHome } = useContext(RepoContext);
   const [inputValue, setInputValue] = useState("");
   const [repos, setRepos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,10 +20,9 @@ function Home() {
       return;
     }
     setIsLoading(true);
-    fetch("https://api.github.com/search/repositories?q=" + inputValue)
+    fetch(`https://api.github.com/search/repositories?q=${inputValue}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setIsLoading(false);
         setRepos(data.items);
       })
@@ -32,11 +31,7 @@ function Home() {
         setError(true);
         console.error(err);
       });
-
-    // console.log(inputValue);
   }, [inputValue]);
-
-  // console.log(repos);
 
   return (
     <div className="App">
@@ -66,11 +61,14 @@ function Home() {
         {repos.map((repo) => {
           return (
             <li key={repo.id}>
-              <Link to={`repo/${repo.name}`} onClick={() => getUrl(repo.url)}>
+              <Link
+                to={`repo/${repo.name}`}
+                onClick={() => {
+                  setUrlFromHome(repo.url);
+                }}
+              >
                 {repo.name}
-                {/* {console.log(repo.url)} */}
               </Link>
-              {/* <a href={repo.html_url}>{repo.name}</a> */}
               <p>{repo.description}</p>
             </li>
           );
