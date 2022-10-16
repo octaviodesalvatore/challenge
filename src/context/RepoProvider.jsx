@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Provider } from "../context/RepoContext";
 
 const RepoProvider = ({ children }) => {
-  const [saveUrl, setSaveUrl] = useState("");
   const [content, setContent] = useState([]);
   const [urlFromHome, setUrlFromHome] = useState("");
   const [currentUrl, setCurrentUrl] = useState(`${urlFromHome}/contents`);
@@ -11,15 +10,15 @@ const RepoProvider = ({ children }) => {
 
   const [clickedComponent, setclickedComponent] = useState(false);
 
+  console.log("1", urlFromHome);
+  console.log("2", currentUrl);
+
   const updateUrl = (url) => {
-    setCurrentUrl(`${currentUrl}${url}`);
+    console.log("hola");
+    setCurrentUrl(url);
   };
 
-  useEffect(() => {
-    setCurrentUrl(`${urlFromHome}/contents`);
-  }, [urlFromHome]);
-
-  useEffect(() => {
+  const getData = () => {
     fetch(currentUrl, {
       headers: {
         Authorization: `${process.env.REACT_APP_GITHUB_API}`,
@@ -32,13 +31,23 @@ const RepoProvider = ({ children }) => {
       .catch((err) => {
         console.error(err);
       });
+    console.log("URL DENTRO DEL FETCH", currentUrl);
+  };
+
+  useEffect(() => {
+    getData();
   }, [currentUrl]);
+
+  useEffect(() => {
+    setCurrentUrl(`${urlFromHome}/contents`);
+  }, [urlFromHome]);
+
+  console.log("URL FUERA DEL FETCH", currentUrl);
 
   return (
     <Provider
       value={{
         setContent,
-        saveUrl,
         currentUrl,
         setCurrentUrl,
         setclickedComponent,
@@ -49,6 +58,9 @@ const RepoProvider = ({ children }) => {
         contentProps,
         updateUrl,
         setUrlFromHome,
+        getData,
+
+        urlFromHome,
       }}
     >
       {children}

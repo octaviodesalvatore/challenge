@@ -15,8 +15,6 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/repo/:user" element={<Repo />} />
-            {/* <Route exact path="/user/:login" component={User} /> */}
-            {/* <Route component={NotFound} /> */}
           </Routes>
         </BrowserRouter>
       </RepoProvider>
