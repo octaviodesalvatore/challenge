@@ -8,13 +8,14 @@ const RepoProvider = ({ children }) => {
   const [currentUrl, setCurrentUrl] = useState(`${urlFromHome}/contents`);
   const [contentProps, setContentProps] = useState();
 
+  const [inputValue, setInputValue] = useState("");
+  const [repos, setRepos] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+
   const [clickedComponent, setclickedComponent] = useState(false);
 
-  console.log("1", urlFromHome);
-  console.log("2", currentUrl);
-
   const updateUrl = (url) => {
-    console.log("hola");
     setCurrentUrl(url);
   };
 
@@ -31,7 +32,6 @@ const RepoProvider = ({ children }) => {
       .catch((err) => {
         console.error(err);
       });
-    console.log("URL DENTRO DEL FETCH", currentUrl);
   };
 
   useEffect(() => {
@@ -42,7 +42,24 @@ const RepoProvider = ({ children }) => {
     setCurrentUrl(`${urlFromHome}/contents`);
   }, [urlFromHome]);
 
-  console.log("URL FUERA DEL FETCH", currentUrl);
+  const fetchFromHome = () => {
+    if (!inputValue) {
+      // console.log("no input value, haciendo el return");
+      return;
+    }
+    setIsLoading(true);
+    fetch(`https://api.github.com/search/repositories?q=${inputValue}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLoading(false);
+        setRepos(data.items);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(true);
+        console.error(err);
+      });
+  };
 
   return (
     <Provider
@@ -59,8 +76,11 @@ const RepoProvider = ({ children }) => {
         updateUrl,
         setUrlFromHome,
         getData,
-
         urlFromHome,
+        fetchFromHome,
+        setInputValue,
+        repos,
+        inputValue,
       }}
     >
       {children}

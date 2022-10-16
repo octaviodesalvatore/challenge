@@ -1,37 +1,16 @@
-import { useEffect, useState, useContext } from "react";
-
-import { Link } from "react-router-dom";
-
-import RepoContext from "../context/RepoContext";
+import { useEffect, useContext } from "react";
 
 import styled from "styled-components";
 import Search from "../Components/Search";
+import RepoItemList from "../Components/RepoItemList";
+
+import RepoContext from "../context/RepoContext";
 
 function Home() {
-  const { setUrlFromHome } = useContext(RepoContext);
-  const [inputValue, setInputValue] = useState("");
-  const [repos, setRepos] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [hayRepos, setHayRepos] = useState(false);
-
+  const { repos, isLoading, error, setInputValue, fetchFromHome, inputValue } =
+    useContext(RepoContext);
   useEffect(() => {
-    if (!inputValue) {
-      // console.log("no input value, haciendo el return");
-      return;
-    }
-    setIsLoading(true);
-    fetch(`https://api.github.com/search/repositories?q=${inputValue}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoading(false);
-        setRepos(data.items);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(true);
-        console.error(err);
-      });
+    fetchFromHome();
   }, [inputValue]);
 
   return (
@@ -40,7 +19,7 @@ function Home() {
       <ul>
         {isLoading && (
           <div>
-            <p>Cargando...</p>
+            <p className="loading">Cargando...</p>
           </div>
         )}
         {error && (
@@ -50,19 +29,7 @@ function Home() {
         )}
         {repos &&
           repos.map((repo) => {
-            return (
-              <li key={repo.id}>
-                <Link
-                  to={`repo/${repo.name}`}
-                  onClick={() => {
-                    setUrlFromHome(repo.url);
-                  }}
-                >
-                  {repo.name}
-                </Link>
-                <p>{repo.description}</p>
-              </li>
-            );
+            return <RepoItemList repo={repo} key={repo.id} />;
           })}
       </ul>
     </HomeContainer>
@@ -72,8 +39,10 @@ function Home() {
 const HomeContainer = styled.div`
   width: 100vw;
   height: ${(props) => (props.repos ? 10 : 100)}vh;
-
   transition: all 400ms ease-in;
+  .loading {
+    color: #ffffff;
+  }
 
   form {
     display: flex;

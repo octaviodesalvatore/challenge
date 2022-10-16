@@ -4,10 +4,10 @@ import RepoContext from "../context/RepoContext";
 import Table from "./Table";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
 const Repo = () => {
   const navigate = useNavigate();
   const {
-    setCurrentUrl,
     currentUrl,
     clickedComponent,
     content,
@@ -16,8 +16,6 @@ const Repo = () => {
     getData,
     urlFromHome,
   } = useContext(RepoContext);
-
-  console.log(clickedComponent);
 
   const checkUrl = (url) => {
     if (urlFromHome === url) {

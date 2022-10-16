@@ -20,7 +20,6 @@ const Table = () => {
             <th>Nombre</th>
             <th>Tipo</th>
           </tr>
-          {console.log(content)}
           {content &&
             Array.isArray(content) &&
             content.map((contenido) => (
