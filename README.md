@@ -8,6 +8,7 @@ yarn start
 
 In the function found in ReportContext, add your github access token after Bearer Example:
 
+```
 const getData = () => {
     fetch(currentUrl, {
       headers: {
@@ -15,4 +16,4 @@ const getData = () => {
       },
     })
     ...
-
+```
