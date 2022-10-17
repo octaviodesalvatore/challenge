@@ -16,8 +16,10 @@ const File = ({ content }) => {
 
   return (
     <FileContainer>
-      <h3>{content.name}</h3>
-      <p>{content.content && fileVeri(content)}</p>
+      <div className="hola">
+        <h3>{content.name}</h3>
+        <p>{content.content && fileVeri(content)}</p>
+      </div>
     </FileContainer>
   );
 };
@@ -28,6 +30,12 @@ const FileContainer = styled.div`
   display: flex;
   padding: 10%;
   flex-direction: column;
+
+  .hola {
+    background-color: #0d1117;
+    padding: 20px;
+    border-radius: 10px;
+  }
 
   h3 {
     color: #ffffff;
