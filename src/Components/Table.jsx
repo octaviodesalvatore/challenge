@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import RepoContext from "../context/RepoContext";
 import styled from "styled-components";
 
@@ -9,7 +9,6 @@ const Table = () => {
     setContentProps,
     setclickedComponent,
     currentUrl,
-    getData,
   } = useContext(RepoContext);
 
   return (

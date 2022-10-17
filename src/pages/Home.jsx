@@ -3,12 +3,12 @@ import { useEffect, useContext } from "react";
 import styled from "styled-components";
 import Search from "../Components/Search";
 import RepoItemList from "../Components/RepoItemList";
-
 import RepoContext from "../context/RepoContext";
 
 function Home() {
   const { repos, isLoading, error, setInputValue, fetchFromHome, inputValue } =
     useContext(RepoContext);
+
   useEffect(() => {
     fetchFromHome();
   }, [inputValue]);

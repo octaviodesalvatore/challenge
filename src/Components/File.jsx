@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import RepoContext from "../context/RepoContext";
 
 const File = ({ content }) => {
-  const { setUrlFromHome, setInputValue } = useContext(RepoContext);
   const fileVeri = (file) => {
     // console.log("svg", atob(`${file.content}`));
     let name = file.name.toLowerCase();

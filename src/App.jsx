@@ -1,11 +1,10 @@
 import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RepoProvider from "./context/RepoProvider";
 
 import Home from "./pages/Home";
 import Repo from "./Components/Repo";
-
-import RepoProvider from "./context/RepoProvider";
 
 const App = () => {
   return (
