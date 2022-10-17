@@ -16,6 +16,7 @@ function Home() {
   return (
     <HomeContainer repos={repos}>
       <Search setInputValue={setInputValue} />
+
       <ul>
         {isLoading && (
           <div>
@@ -54,11 +55,8 @@ const HomeContainer = styled.div`
     padding: 20px;
     font-size: 20px;
     width: 650px;
-    border-radius: 10px;
     border: none;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.4);
-    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.4);
+    background: #ffffff;
 
     &:focus {
       outline: none;
