@@ -10,9 +10,7 @@ const Repo = () => {
 
   return (
     <RepoContainer>
-      <div>
-        <ButtonBack />
-      </div>
+      <ButtonBack />
       {content && clickedComponent ? <File content={content} /> : <Table />}
     </RepoContainer>
   );

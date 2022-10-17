@@ -16,6 +16,7 @@ const File = ({ content }) => {
 
   return (
     <FileContainer>
+      <h3>{content.name}</h3>
       <p>{content.content && fileVeri(content)}</p>
     </FileContainer>
   );
@@ -26,8 +27,12 @@ export default File;
 const FileContainer = styled.div`
   display: flex;
   padding: 10%;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+
+  h3 {
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
   p {
     color: #ffffff;
     font-size: 20px;
