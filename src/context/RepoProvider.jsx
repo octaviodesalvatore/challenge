@@ -22,7 +22,7 @@ const RepoProvider = ({ children }) => {
   const getData = () => {
     fetch(currentUrl, {
       headers: {
-        Authorization: `${process.env.REACT_APP_GITHUB_API}`,
+        // Authorization: `${process.env.REACT_APP_GITHUB_API}`,
       },
     })
       .then((response) => response.json())
