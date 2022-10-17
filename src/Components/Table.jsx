@@ -21,22 +21,22 @@ const Table = () => {
           </tr>
           {content &&
             Array.isArray(content) &&
-            content.map((contenido) => (
-              <tr key={contenido.sha}>
+            content.map((cont) => (
+              <tr key={cont.sha}>
                 <td
                   className="file"
                   onClick={() => {
-                    updateUrl(`${currentUrl}/${contenido.name}`);
+                    updateUrl(`${currentUrl}/${cont.name}`);
 
-                    if (contenido.type === "file") {
-                      setContentProps(contenido);
+                    if (cont.type === "file") {
+                      setContentProps(cont);
                       setclickedComponent(true);
                     }
                   }}
                 >
-                  {contenido.path}
+                  {cont.path}
                 </td>
-                <td>{contenido.type}</td>
+                <td>{cont.type}</td>
               </tr>
             ))}
         </tbody>
