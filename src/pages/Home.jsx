@@ -5,7 +5,7 @@ import Search from "../Components/Search";
 import RepoItemList from "../Components/RepoItemList";
 import RepoContext from "../context/RepoContext";
 
-function Home() {
+const Home = () => {
   const { repos, isLoading, error, setInputValue, fetchFromHome, inputValue } =
     useContext(RepoContext);
 
@@ -35,12 +35,14 @@ function Home() {
       </ul>
     </HomeContainer>
   );
-}
+};
 
 const HomeContainer = styled.div`
   width: 100vw;
   height: ${(props) => (props.repos ? 10 : 100)}vh;
   transition: all 400ms ease-in;
+  max-width: 1200px;
+  margin: 0 auto;
   .loading {
     color: #ffffff;
   }
@@ -73,6 +75,7 @@ const HomeContainer = styled.div`
       padding: 20px;
       margin-bottom: 20px;
       font-size: 18px;
+      border-radius: 6px;
 
       &:hover {
         background-color: #264064;

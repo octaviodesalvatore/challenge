@@ -20,7 +20,6 @@ const ButtonBack = () => {
     <ButtonB
       onClick={() => {
         setclickedComponent(false);
-        //no se llega actualizar
         let url = currentUrl.slice(0, currentUrl.lastIndexOf("/"));
         updateUrl(url);
         checkUrl(url);
@@ -37,6 +36,7 @@ const ButtonB = styled.button`
   border: none;
   padding: 10px 18px;
   border-radius: 5px;
+  margin-right: 50px;
   cursor: pointer;
 
   &:hover {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { Provider } from "../context/RepoContext";
 
 const RepoProvider = ({ children }) => {
@@ -7,12 +6,10 @@ const RepoProvider = ({ children }) => {
   const [urlFromHome, setUrlFromHome] = useState("");
   const [currentUrl, setCurrentUrl] = useState(`${urlFromHome}/contents`);
   const [contentProps, setContentProps] = useState();
-
   const [inputValue, setInputValue] = useState("");
   const [repos, setRepos] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-
   const [clickedComponent, setclickedComponent] = useState(false);
 
   const updateUrl = (url) => {
@@ -44,7 +41,6 @@ const RepoProvider = ({ children }) => {
 
   const fetchFromHome = () => {
     if (!inputValue) {
-      // console.log("no input value, haciendo el return");
       return;
     }
     setIsLoading(true);

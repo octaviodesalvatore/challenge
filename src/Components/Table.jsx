@@ -48,9 +48,7 @@ const Table = () => {
 export default Table;
 
 const Container = styled.div`
-  padding: 80px 0;
   height: 100%;
-  width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -62,9 +60,10 @@ const Container = styled.div`
       color: #ffffff;
 
       td {
-        border: 1px solid #000000;
+        border: 1px solid #827993;
         padding: 10px;
         padding-right: 70px;
+        border-radius: 5px;
       }
     }
 

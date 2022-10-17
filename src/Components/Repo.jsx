@@ -10,8 +10,10 @@ const Repo = () => {
 
   return (
     <RepoContainer>
-      <ButtonBack />
-      {content && clickedComponent ? <File content={content} /> : <Table />}
+      <div className="RepoBox">
+        <ButtonBack />
+        {content && clickedComponent ? <File content={content} /> : <Table />}
+      </div>
     </RepoContainer>
   );
 };
@@ -19,7 +21,15 @@ const Repo = () => {
 export default Repo;
 
 const RepoContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
+  padding: 120px 0;
+
+  .RepoBox {
+    display: flex;
+    align-items: flex-start;
+  }
 `;

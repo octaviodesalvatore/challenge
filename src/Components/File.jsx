@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const File = ({ content }) => {
   const fileVeri = (file) => {
-    // console.log("svg", atob(`${file.content}`));
     let name = file.name.toLowerCase();
     if (name.includes(".png") || name.includes(".jpg"))
       return <img src={`data:image/jpeg;base64, ${file.content}`} />;
@@ -16,7 +15,7 @@ const File = ({ content }) => {
 
   return (
     <FileContainer>
-      <div className="hola">
+      <div className="Filebox">
         <h3>{content.name}</h3>
         <p>{content.content && fileVeri(content)}</p>
       </div>
@@ -27,11 +26,7 @@ const File = ({ content }) => {
 export default File;
 
 const FileContainer = styled.div`
-  display: flex;
-  padding: 10%;
-  flex-direction: column;
-
-  .hola {
+  .Filebox {
     background-color: #0d1117;
     padding: 20px;
     border-radius: 10px;
