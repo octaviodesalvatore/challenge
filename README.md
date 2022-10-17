@@ -1,7 +1,7 @@
-# Install dependencies
+## Install dependencies
 yarn
 
-# Server with localhost
+## Server with localhost
 yarn start
 
 ### In case of need more than 60 requests per hour
