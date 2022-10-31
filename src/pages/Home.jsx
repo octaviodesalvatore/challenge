@@ -60,6 +60,16 @@ const HomeContainer = styled.div`
     border: none;
     background: #ffffff;
 
+    @media (max-width: 500px) {
+      width: 260px;
+      font-size: 16px;
+    }
+
+    @media only screen and (max-width: 786px) and (min-width: 500px) {
+      width: 400px;
+      font-size: 16px;
+    }
+
     &:focus {
       outline: none;
     }
@@ -85,6 +95,14 @@ const HomeContainer = styled.div`
       text-decoration: none;
       color: #58a6ff;
       font-size: 28px;
+
+      @media (max-width: 500px) {
+        font-size: 22px;
+      }
+
+      @media only screen and (max-width: 786px) and (min-width: 500px) {
+        font-size: 24px;
+      }
       &:hover {
         color: #d1e5fc;
       }

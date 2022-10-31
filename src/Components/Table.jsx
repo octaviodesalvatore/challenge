@@ -56,6 +56,7 @@ const Container = styled.div`
 
   table {
     text-align: left;
+
     tr {
       color: #ffffff;
 

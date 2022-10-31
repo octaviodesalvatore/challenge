@@ -28,8 +28,23 @@ const RepoContainer = styled.div`
   align-items: center;
   padding: 120px 0;
 
+  @media (max-width: 500px) {
+    padding: 20px 0;
+  }
+
+  @media only screen and (max-width: 786px) and (min-width: 500px) {
+    padding: 20px 0;
+  }
+
   .RepoBox {
     display: flex;
     align-items: flex-start;
+    @media (max-width: 500px) {
+      flex-direction: column;
+    }
+
+    @media only screen and (max-width: 786px) and (min-width: 500px) {
+      flex-direction: column;
+    }
   }
 `;

@@ -46,10 +46,27 @@ export default File;
 const FileContainer = styled.div`
   .Filebox {
     background-color: #000000;
-    min-width: 1000px;
     padding: 20px;
     border-end-end-radius: 10px;
     border-end-start-radius: 10px;
+
+    @media (min-width: 768px) {
+      min-width: 768px;
+    }
+
+    @media (min-width: 1000px) {
+      min-width: 1000px;
+    }
+
+    @media (max-width: 500px) {
+      max-width: 320px;
+      font-size: 20px;
+    }
+
+    @media only screen and (max-width: 786px) and (min-width: 500px) {
+      max-width: 320px;
+      font-size: 20px;
+    }
   }
 
   .codeBox {
@@ -67,6 +84,13 @@ const FileContainer = styled.div`
   p {
     color: #ffffff;
     font-size: 20px;
+    @media (max-width: 500px) {
+      font-size: 10px;
+    }
+
+    @media only screen and (max-width: 786px) and (min-width: 500px) {
+      font-size: 11px;
+    }
   }
   img {
     width: 250px;
